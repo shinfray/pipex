@@ -23,3 +23,14 @@ char    **ft_get_path(char **envp)
     }
     return (path);
 }
+
+int **ft_init_pipe(int argc)
+{
+    int **fd;
+
+    fd = ft_calloc((argc - 2) * 2, sizeof(int));
+    while (argc - 2 > 0)
+    {
+        pipe(*fd);
+    }
+}
