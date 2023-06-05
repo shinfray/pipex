@@ -20,6 +20,20 @@
 # include <sys/wait.h>
 # include "libft.h"
 
+typedef struct s_pipex
+{
+    int     **argv;
+    char    **path;
+    int     fd_in;
+    int     fd_out;
+    char    *infile;
+    char    *outfile;
+    char    **args_1;
+    char    **args_2;
+    char    *path_cmd1;
+    char    *path_cmd2;
+}               t_pipex;
+
 char    **ft_get_path(char **envp);
 
 #endif
