@@ -22,7 +22,8 @@
 
 typedef struct s_pipex
 {
-    int     **argv;
+    char    **argv;
+    char    **envp;
     char    **path;
     int     fd_in;
     int     fd_out;
@@ -32,6 +33,9 @@ typedef struct s_pipex
     char    **args_2;
     char    *path_cmd1;
     char    *path_cmd2;
+    int     fd[2];
+    int     pid1;
+    int     pid2;
 }               t_pipex;
 
 char    **ft_get_path(char **envp);
