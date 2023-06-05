@@ -12,7 +12,19 @@
 
 #include "pipex.h"
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
+	char	**path;
+	int		i;
+
+	(void)argc;
+	(void)argv;
+	path = ft_get_path(envp);
+	i = 0;
+	while (path != NULL && path[i] != NULL)
+	{
+		printf("%s\n", path[i]);
+		++i;
+	}
 	return (0);
 }

@@ -20,4 +20,6 @@
 # include <sys/wait.h>
 # include "libft.h"
 
+char    **ft_get_path(char **envp);
+
 #endif

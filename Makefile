@@ -17,7 +17,8 @@ NAME:=	pipex
 BUILD_DIR:= build
 SRCS_DIR:= srcs
 
-SRCS_PIPEX:=	main.c
+SRCS_PIPEX:=	main.c \
+				utils.c
 
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_PIPEX}}
 
