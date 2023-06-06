@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/02 15:56:52 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/06 19:15:20 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ BUILD_DIR:= build
 SRCS_DIR:= srcs
 
 SRCS_PIPEX:=	main.c \
-				utils.c
+				utils.c \
+				set_pipex.c \
+				parse.c
 
 SRCS:=	${addprefix ${SRCS_DIR}/,${SRCS_PIPEX}}
 

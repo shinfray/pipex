@@ -1,47 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/06 19:20:37 by shinfray          #+#    #+#             */
+/*   Updated: 2023/06/06 19:30:59 by shinfray         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
-char    **ft_get_path(char **envp)
-{
-    char    **path;
+void		ft_set_path(t_pipex *s_pipex);
+void		ft_quit(t_pipex *s_pipex);
+static void	ft_free_double_ptr(char **tab);
 
-    if (envp == NULL)
-    {
-        ft_putendl_fd("PATH unavailable", 2);
-        exit(EXIT_FAILURE);
-    }
-    path = NULL;
-    while (*envp != NULL && ft_strncmp(*envp, "PATH=", 5) != 0)
-        (*envp)++;
-	if (*envp == NULL)
-    {
-        ft_putendl_fd("PATH unavailable", 2);
-        exit(EXIT_FAILURE);
-    }
-	path = ft_split(*envp + 5, ':');
-	if (path == NULL)
+void	ft_set_path(t_pipex *s_pipex)
+{
+	int	i;
+
+	i = 0;
+	while (s_pipex->path[i] != NULL)
 	{
-		perror("split");
-		exit(EXIT_FAILURE);
-	}
-    return (path);
-}
-
-static void	ft_free_double_ptr(char **tab)
-{
-	char	**ptr;
-
-	ptr = tab;
-	while (*tab != NULL)
-		free(*tab++);
-	free(ptr);
+		s_pipex->path[i] = ft_strjoin(s_pipex->path[i], "/");
+		if (s_pipex->path[i] == NULL)
+			ft_quit(s_pipex);
+		++i;
+	}	
 }
 
 void	ft_quit(t_pipex *s_pipex)
 {
-	// if (s_pipex->fd[0] != -1)
-	// 	close(s_pipex->fd[0]);
-	// if (s_pipex->fd[1] != -1)
-	// 	close(s_pipex->fd[1]);
 	free(s_pipex->path_cmd1);
 	free(s_pipex->path_cmd2);
 	if (s_pipex->path != NULL)
@@ -55,21 +45,12 @@ void	ft_quit(t_pipex *s_pipex)
 	exit(s_pipex->exit_status);
 }
 
-
-void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp)
+static void	ft_free_double_ptr(char **tab)
 {
-	s_pipex->exit_status = EXIT_FAILURE;
-	s_pipex->argv = argv;
-	s_pipex->envp = envp;
-	s_pipex->path = ft_get_path(envp);
-	s_pipex->infile = argv[1];
-	s_pipex->outfile = argv[argc - 1];
-	s_pipex->args_1 = NULL;
-	s_pipex->args_2 = NULL;
-	s_pipex->path_cmd1 = NULL;
-	s_pipex->path_cmd2 = NULL;
-	s_pipex->fd[0] = -1;
-	s_pipex->fd[1] = -1;
-	s_pipex->fd_out = -1;
-	s_pipex->fd_in = -1;
+	char	**ptr;
+
+	ptr = tab;
+	while (*tab != NULL)
+		free(*tab++);
+	free(ptr);
 }
