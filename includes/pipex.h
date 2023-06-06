@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/06 17:09:40 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/06 18:16:58 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,11 @@ typedef struct s_pipex
     int     fd[2];
     int     pid1;
     int     pid2;
+	int		exit_status;
 }               t_pipex;
 
 char    **ft_get_path(char **envp);
 void	ft_quit(t_pipex *s_pipex);
+void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp);
 
 #endif
