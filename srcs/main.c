@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:59:53 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/06 19:39:00 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:03:15 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_open_files(&s_pipex);
 	ft_parse_args(&s_pipex);
 	ft_set_path(&s_pipex);
-	ft_check_path_cmd2(&s_pipex);
+	ft_check_path_cmd1(&s_pipex);
 	ft_check_path_cmd2(&s_pipex);
 	if (pipe(s_pipex.fd) == -1)
 		ft_quit(&s_pipex);
