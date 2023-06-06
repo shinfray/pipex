@@ -3,5 +3,3 @@
 **/*.a
 **/build
 pipex
-infile.txt
-outfile.txt
