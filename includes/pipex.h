@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shinfray <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/02 16:06:54 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:09:40 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/wait.h>
+# include <errno.h>
 # include "libft.h"
 
 typedef struct s_pipex
@@ -39,5 +40,6 @@ typedef struct s_pipex
 }               t_pipex;
 
 char    **ft_get_path(char **envp);
+void	ft_quit(t_pipex *s_pipex);
 
 #endif
