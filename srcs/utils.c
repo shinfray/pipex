@@ -12,9 +12,8 @@
 
 #include "pipex.h"
 
-void		ft_quit(t_pipex *s_pipex);
+void	ft_quit(t_pipex *s_pipex);
 void	*ft_free_double_ptr(char **tab);
-
 
 void	ft_quit(t_pipex *s_pipex)
 {

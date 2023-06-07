@@ -27,20 +27,14 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	}
 	ft_set_pipex(&s_pipex, argc, argv, envp);
-	ft_open_files(&s_pipex);
-	ft_set_path(&s_pipex);
 	if (pipe(s_pipex.fd) == -1)
 		perror("pipe creation");
 	ft_exec_cmd1(&s_pipex);
 	ft_exec_cmd2(&s_pipex);
-	if (s_pipex.fd_in != -1)
-		close(s_pipex.fd_in);
-	if (s_pipex.fd_out != -1)
-		close(s_pipex.fd_out);
-	if (s_pipex.fd[0] != -1)
-		close(s_pipex.fd[0]);
-	if (s_pipex.fd[1] != -1)
-		close(s_pipex.fd[1]);
+	close(s_pipex.fd_in);
+	close(s_pipex.fd_out);
+	close(s_pipex.fd[0]);
+	close(s_pipex.fd[1]);
 	ft_wait(&s_pipex);
 	ft_quit(&s_pipex);
 }
@@ -64,10 +58,7 @@ static void	ft_exec_cmd1(t_pipex *s_pipex)
 	close(s_pipex->fd_in);
 	close(s_pipex->fd[1]);
 	if (res[0] == -1 || res[1] == -1)
-	{
-		perror("dup2");
 		exit(EXIT_FAILURE);
-	}
 	ft_parse_args(s_pipex, s_pipex->argv[2]);
 	ft_check_path_cmd(s_pipex);
 	execve(s_pipex->path_cmd, s_pipex->args, s_pipex->envp);
@@ -96,10 +87,7 @@ static void	ft_exec_cmd2(t_pipex *s_pipex)
 	close(s_pipex->fd_out);
 	close(s_pipex->fd[0]);
 	if (res[0] == -1 || res[1] == -1)
-	{
-		perror("dup2");
 		exit(EXIT_FAILURE);
-	}
 	ft_parse_args(s_pipex, s_pipex->argv[3]);
 	ft_check_path_cmd(s_pipex);
 	execve(s_pipex->path_cmd, s_pipex->args, s_pipex->envp);

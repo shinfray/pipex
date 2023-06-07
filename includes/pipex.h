@@ -40,8 +40,6 @@ typedef struct s_pipex
 
 /*	SET_PIPEX FUNCTIONS	*/
 void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp);
-void	ft_open_files(t_pipex *s_pipex);
-void	ft_set_path(t_pipex *s_pipex);
 
 /*	PARSE FUNCTIONS	*/
 void	ft_parse_args(t_pipex *s_pipex, char *args);
