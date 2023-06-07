@@ -46,7 +46,6 @@ void	ft_open_files(t_pipex *s_pipex)
 		ft_quit(s_pipex);
 	if (dup2(s_pipex->fd_in, 0) != -1)
 	{
-		printf("coucou\n");
 		close(s_pipex->fd_in);
 		return ;
 	}
