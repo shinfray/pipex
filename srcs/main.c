@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:59:53 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/06 20:03:15 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:26:31 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,17 @@ static void	ft_exec_cmd2(t_pipex *s_pipex);
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	s_pipex;
+	int		wstatus1;
+	int		wstatus2;
+	int		status_code1;
+	int		status_code2;
 
 	errno = 0;
 	if (argc != 5)
+	{
+		ft_putendl_fd("Usage: ./pipex infile cmd1 cmd2 outfile", 2);
 		return (0);
+	}
 	ft_set_pipex(&s_pipex, argc, argv, envp);
 	ft_open_files(&s_pipex);
 	ft_parse_args(&s_pipex);
@@ -32,11 +39,15 @@ int	main(int argc, char **argv, char **envp)
 		ft_quit(&s_pipex);
 	ft_exec_cmd1(&s_pipex);
 	ft_exec_cmd2(&s_pipex);
-	waitpid(s_pipex.pid1, NULL, 0);
-	waitpid(s_pipex.pid2, NULL, 0);
-	s_pipex.exit_status = EXIT_SUCCESS;
+	
+	waitpid(s_pipex.pid1, &wstatus1, 0);
+	status_code1 = WEXITSTATUS(wstatus1);
+	waitpid(s_pipex.pid2, &wstatus2, 0);
+	status_code2 = WEXITSTATUS(wstatus2);
+
+	
+	
 	ft_quit(&s_pipex);
-	return (0);
 }
 
 static void	ft_exec_cmd1(t_pipex *s_pipex)

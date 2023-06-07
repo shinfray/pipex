@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/06 19:43:28 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:13:54 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_pipex
 	int		pid1;
 	int		pid2;
 	int		exit_status;
+	int		exit_code;
 }				t_pipex;
 
 /*	SET_PIPEX FUNCTIONS	*/
