@@ -21,7 +21,7 @@ void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp)
 	s_pipex->exit_status = EXIT_FAILURE;
 	s_pipex->argv = argv;
 	s_pipex->envp = envp;
-	s_pipex->path = ft_get_path(envp);
+	s_pipex->path = ft_get_path(s_pipex->envp);
 	s_pipex->infile = argv[1];
 	s_pipex->outfile = argv[argc - 1];
 	s_pipex->args_1 = NULL;
