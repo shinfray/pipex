@@ -31,8 +31,6 @@ DEPS:=	${OBJS:.o=.d}
 LIBFT:=	libs/libft/libft.a
 CFLAGS:= -Wall -Wextra -Werror
 
-# ROOT_INC_DIRS:= includes libs/libft/includes libs/minilibx_macos
-# INC_DIRS:= ${shell find ${ROOT_INC_DIRS} -type d}
 INC_DIRS:= includes libs/libft/includes
 
 CPPFLAGS:= ${addprefix -I,${INC_DIRS}} -MMD -MP
@@ -46,7 +44,7 @@ RM:=	rm -rf
 all: ${NAME}
 
 ${NAME}: ${OBJS} ${LIBFT}
-	${CC} ${LDFLAGS} ${OBJS} ${LDLIBS} -o $@ -fsanitize=address
+	${CC} ${LDFLAGS} ${OBJS} ${LDLIBS} -o $@
 
 ${LIBFT}:
 	${MAKE} -C ${dir ${LIBFT}}

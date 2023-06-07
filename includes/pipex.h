@@ -26,19 +26,18 @@ typedef struct s_pipex
 	char	**argv;
 	char	**envp;
 	char	**path;
-	int		fd_in;
-	int		fd_out;
 	char	*infile;
 	char	*outfile;
 	char	**args_1;
 	char	**args_2;
 	char	*path_cmd1;
 	char	*path_cmd2;
+	int		fd_in;
+	int		fd_out;
 	int		fd[2];
 	int		pid1;
 	int		pid2;
 	int		exit_status;
-	int		exit_code;
 }				t_pipex;
 
 /*	SET_PIPEX FUNCTIONS	*/

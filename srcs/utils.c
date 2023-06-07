@@ -40,8 +40,6 @@ void	ft_quit(t_pipex *s_pipex)
 		ft_free_double_ptr(s_pipex->args_1);
 	if (s_pipex->args_2 != NULL)
 		ft_free_double_ptr(s_pipex->args_2);
-	if (s_pipex->exit_status == EXIT_FAILURE)
-		perror("pipex");
 	exit(s_pipex->exit_status);
 }
 

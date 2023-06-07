@@ -14,14 +14,11 @@
 
 static void	ft_exec_cmd1(t_pipex *s_pipex);
 static void	ft_exec_cmd2(t_pipex *s_pipex);
+static void	ft_wait(t_pipex *s_pipex);
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	s_pipex;
-	int		wstatus1;
-	int		wstatus2;
-	int		status_code1;
-	int		status_code2;
 
 	errno = 0;
 	if (argc != 5)
@@ -39,14 +36,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_quit(&s_pipex);
 	ft_exec_cmd1(&s_pipex);
 	ft_exec_cmd2(&s_pipex);
-	
-	waitpid(s_pipex.pid1, &wstatus1, 0);
-	status_code1 = WEXITSTATUS(wstatus1);
-	waitpid(s_pipex.pid2, &wstatus2, 0);
-	status_code2 = WEXITSTATUS(wstatus2);
-
-	
-	
+	ft_wait(&s_pipex);
 	ft_quit(&s_pipex);
 }
 
@@ -85,4 +75,18 @@ static void	ft_exec_cmd2(t_pipex *s_pipex)
 		execve(s_pipex->path_cmd2, s_pipex->args_2, s_pipex->envp);
 		exit(EXIT_FAILURE);
 	}
+}
+
+static void	ft_wait(t_pipex *s_pipex)
+{
+	int		wstatus;
+
+	waitpid(s_pipex->pid1, &wstatus, 0);
+	if (WIFEXITED(wstatus))
+		s_pipex->exit_status = WEXITSTATUS(wstatus);
+	waitpid(s_pipex->pid2, &wstatus, 0);
+	if (WIFEXITED(wstatus))
+		s_pipex->exit_status = WEXITSTATUS(wstatus);
+	else
+		s_pipex->exit_status = EXIT_FAILURE;
 }
