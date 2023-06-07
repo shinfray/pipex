@@ -28,10 +28,8 @@ typedef struct s_pipex
 	char	**path;
 	char	*infile;
 	char	*outfile;
-	char	**args_1;
-	char	**args_2;
-	char	*path_cmd1;
-	char	*path_cmd2;
+	char	**args;
+	char	*path_cmd;
 	int		fd_in;
 	int		fd_out;
 	int		fd[2];
@@ -43,14 +41,14 @@ typedef struct s_pipex
 /*	SET_PIPEX FUNCTIONS	*/
 void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp);
 void	ft_open_files(t_pipex *s_pipex);
-
-/*	PARSE FUNCTIONS	*/
-void	ft_parse_args(t_pipex *s_pipex);
-void	ft_check_path_cmd1(t_pipex *s_pipex);
-void	ft_check_path_cmd2(t_pipex *s_pipex);
-
-/*	PARSE FUNCTIONS	*/
 void	ft_set_path(t_pipex *s_pipex);
+
+/*	PARSE FUNCTIONS	*/
+void	ft_parse_args(t_pipex *s_pipex, char *args);
+void	ft_check_path_cmd(t_pipex *s_pipex);
+
+/*	UTILS FUNCTIONS	*/
 void	ft_quit(t_pipex *s_pipex);
+void	*ft_free_double_ptr(char **tab);
 
 #endif
