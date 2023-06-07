@@ -46,6 +46,7 @@ void	ft_open_files(t_pipex *s_pipex)
 		ft_quit(s_pipex);
 	if (dup2(s_pipex->fd_in, 0) != -1)
 	{
+		printf("coucou\n");
 		close(s_pipex->fd_in);
 		return ;
 	}
@@ -56,21 +57,23 @@ void	ft_open_files(t_pipex *s_pipex)
 static char	**ft_get_path(char **envp)
 {
 	char	**path;
+	int		i;
 
+	i = 0;
 	if (envp == NULL)
 	{
 		ft_putendl_fd("PATH unavailable", 2);
 		exit(EXIT_FAILURE);
 	}
 	path = NULL;
-	while (*envp != NULL && ft_strncmp(*envp, "PATH=", 5) != 0)
-		(*envp)++;
-	if (*envp == NULL)
+	while (envp[i] != NULL && ft_strncmp(envp[i], "PATH=", 5) != 0)
+		i++;
+	if (envp[i] == NULL)
 	{
 		ft_putendl_fd("PATH unavailable", 2);
 		exit(EXIT_FAILURE);
 	}
-	path = ft_split(*envp + 5, ':');
+	path = ft_split(envp[i] + 5, ':');
 	if (path == NULL)
 	{
 		perror("split");
