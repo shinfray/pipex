@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:14:58 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 09:54:11 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 13:07:46 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_parse_args(t_pipex *s_pipex, char *argv)
 	s_pipex->args = ft_split(argv, ' ');
 	if (s_pipex->args == NULL)
 		perror("ft_split");
+	ft_check_path_cmd(s_pipex);
 }
 
 void	ft_check_path_cmd(t_pipex *s_pipex)

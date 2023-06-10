@@ -6,19 +6,20 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 11:46:52 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 12:59:38 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
+# include <errno.h>
 # include <fcntl.h>
+# include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <sys/wait.h>
-# include <errno.h>
+# include <unistd.h>
 # include "libft.h"
 
 # define COMMAND_NOT_FOUND 127
@@ -51,5 +52,6 @@ void	ft_check_path_cmd(t_pipex *s_pipex);
 /*	UTILS FUNCTIONS	*/
 void	ft_quit(t_pipex *s_pipex);
 void	*ft_free_double_ptr(char **tab);
+void	ft_close(int count, ...);
 
 #endif
