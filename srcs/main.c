@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:59:53 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 11:49:12 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 12:42:19 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,8 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 	s_pipex->pid_first = fork();
 	if (s_pipex->pid_first < 0)
 	{
-		perror("fork error");
 		s_pipex->exit_status = EXIT_FAILURE;
-		return ;
+		return (perror("fork error"));
 	}
 	if (s_pipex->pid_first != 0)
 		return ;
@@ -58,14 +57,18 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 	close(s_pipex->fd_in);
 	close(s_pipex->fd[1]);
 	if (res[0] == -1 || res[1] == -1)
-		exit(EXIT_FAILURE);
+	{
+		s_pipex->exit_status = EXIT_FAILURE;
+		ft_quit(s_pipex);
+	}
 	ft_parse_args(s_pipex, s_pipex->argv[2]);
 	ft_check_path_cmd(s_pipex);
 	execve(s_pipex->path_cmd, s_pipex->args, s_pipex->envp);
 	ft_putstr_fd("pipex: command not found: ", 2);
 	if (s_pipex->args[0] != NULL)
 		ft_putendl_fd(s_pipex->args[0], 2);
-	exit(COMMAND_NOT_FOUND);
+	s_pipex->exit_status = COMMAND_NOT_FOUND;
+	ft_quit(s_pipex);
 }
 
 static void	ft_exec_last_cmd(t_pipex *s_pipex)
@@ -75,9 +78,8 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 	s_pipex->pid_last = fork();
 	if (s_pipex->pid_last < 0)
 	{
-		perror("fork error");
 		s_pipex->exit_status = EXIT_FAILURE;
-		return ;
+		return (perror("fork error"));
 	}
 	if (s_pipex->pid_last != 0)
 		return ;
@@ -88,14 +90,18 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 	close(s_pipex->fd_out);
 	close(s_pipex->fd[0]);
 	if (res[0] == -1 || res[1] == -1)
-		exit(EXIT_FAILURE);
+	{
+		s_pipex->exit_status = EXIT_FAILURE;
+		ft_quit(s_pipex);
+	}
 	ft_parse_args(s_pipex, s_pipex->argv[s_pipex->argc - 2]);
 	ft_check_path_cmd(s_pipex);
 	execve(s_pipex->path_cmd, s_pipex->args, s_pipex->envp);
 	ft_putstr_fd("pipex: command not found: ", 2);
 	if (s_pipex->args[0] != NULL)
 		ft_putendl_fd(s_pipex->args[0], 2);
-	exit(COMMAND_NOT_FOUND);
+	s_pipex->exit_status = COMMAND_NOT_FOUND;
+	ft_quit(s_pipex);
 }
 
 static void	ft_wait(t_pipex *s_pipex)
@@ -103,8 +109,6 @@ static void	ft_wait(t_pipex *s_pipex)
 	int		wstatus;
 
 	waitpid(s_pipex->pid_first, &wstatus, 0);
-	if (WIFEXITED(wstatus))
-		s_pipex->exit_status = WEXITSTATUS(wstatus);
 	waitpid(s_pipex->pid_last, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		s_pipex->exit_status = WEXITSTATUS(wstatus);
