@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:15:00 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 09:48:19 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 09:55:33 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	*ft_set_backslash(char **path);
 
 void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp)
 {
+	s_pipex->argc = argc;
 	s_pipex->argv = argv;
 	s_pipex->envp = envp;
 	s_pipex->path = ft_get_path(envp);

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:59:53 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 09:31:58 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 09:59:15 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 	ft_putstr_fd("pipex: command not found: ", 2);
 	if (s_pipex->args[0] != NULL)
 		ft_putendl_fd(s_pipex->args[0], 2);
-	exit(127);
+	exit(COMMAND_NOT_FOUND);
 }
 
 static void	ft_exec_last_cmd(t_pipex *s_pipex)
@@ -89,13 +89,13 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 	close(s_pipex->fd[0]);
 	if (res[0] == -1 || res[1] == -1)
 		exit(EXIT_FAILURE);
-	ft_parse_args(s_pipex, s_pipex->argv[3]);
+	ft_parse_args(s_pipex, s_pipex->argv[s_pipex->argc - 2]);
 	ft_check_path_cmd(s_pipex);
 	execve(s_pipex->path_cmd, s_pipex->args, s_pipex->envp);
 	ft_putstr_fd("pipex: command not found: ", 2);
 	if (s_pipex->args[0] != NULL)
 		ft_putendl_fd(s_pipex->args[0], 2);
-	exit(127);
+	exit(COMMAND_NOT_FOUND);
 }
 
 static void	ft_wait(t_pipex *s_pipex)

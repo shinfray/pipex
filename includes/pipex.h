@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 08:44:11 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 09:58:43 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@
 # include <errno.h>
 # include "libft.h"
 
+# define COMMAND_NOT_FOUND 127
+
 typedef struct s_pipex
 {
+	int		argc;
 	char	**argv;
 	char	**envp;
 	char	**path;
