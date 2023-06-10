@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:59:53 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 09:59:15 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 11:49:12 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 {
 	int	res[2];
 
-	s_pipex->pid1 = fork();
-	if (s_pipex->pid1 < 0)
+	s_pipex->pid_first = fork();
+	if (s_pipex->pid_first < 0)
 	{
 		perror("fork error");
 		s_pipex->exit_status = EXIT_FAILURE;
 		return ;
 	}
-	if (s_pipex->pid1 != 0)
+	if (s_pipex->pid_first != 0)
 		return ;
 	close(s_pipex->fd[0]);
 	close(s_pipex->fd_out);
@@ -72,14 +72,14 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 {
 	int	res[2];
 
-	s_pipex->pid1 = fork();
-	if (s_pipex->pid1 < 0)
+	s_pipex->pid_last = fork();
+	if (s_pipex->pid_last < 0)
 	{
 		perror("fork error");
 		s_pipex->exit_status = EXIT_FAILURE;
 		return ;
 	}
-	if (s_pipex->pid1 != 0)
+	if (s_pipex->pid_last != 0)
 		return ;
 	close(s_pipex->fd[1]);
 	close(s_pipex->fd_in);
@@ -102,10 +102,10 @@ static void	ft_wait(t_pipex *s_pipex)
 {
 	int		wstatus;
 
-	waitpid(s_pipex->pid1, &wstatus, 0);
+	waitpid(s_pipex->pid_first, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		s_pipex->exit_status = WEXITSTATUS(wstatus);
-	waitpid(s_pipex->pid2, &wstatus, 0);
+	waitpid(s_pipex->pid_last, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		s_pipex->exit_status = WEXITSTATUS(wstatus);
 	else
