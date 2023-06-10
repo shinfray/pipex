@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:15:00 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/06 19:30:42 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 09:48:19 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp)
 {
 	s_pipex->argv = argv;
 	s_pipex->envp = envp;
-	s_pipex->path = ft_get_path(s_pipex->envp);
+	s_pipex->path = ft_get_path(envp);
 	s_pipex->infile = argv[1];
 	s_pipex->outfile = argv[argc - 1];
 	s_pipex->args = NULL;
@@ -43,20 +43,24 @@ static char	**ft_get_path(char **envp)
 
 	i = 0;
 	if (envp == NULL)
+	{
 		ft_putendl_fd("PATH unavailable", 2);
-	path = NULL;
+		return (NULL);
+	}
 	while (envp[i] != NULL && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		++i;
 	if (envp[i] == NULL)
+	{
 		ft_putendl_fd("PATH unavailable", 2);
+		return (NULL);
+	}
 	path = ft_split(envp[i] + 5, ':');
 	if (path == NULL)
 	{
 		perror("split");
 		return (NULL);
 	}
-	if (path != NULL)
-		path = ft_set_backslash(path);
+	path = ft_set_backslash(path);
 	return (path);
 }
 
@@ -65,7 +69,7 @@ static void	*ft_set_backslash(char **path)
 	int	i;
 
 	i = 0;
-	while (path != NULL && path[i] != NULL)
+	while (path[i] != NULL)
 	{
 		path[i] = ft_strjoin(path[i], "/");
 		if (path[i++] == NULL)

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:14:58 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/06 20:16:54 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 09:37:45 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void	ft_check_path_cmd(t_pipex *s_pipex)
 	int	i;
 
 	i = 0;
-	s_pipex->path_cmd = ft_strjoin(s_pipex->path[i], s_pipex->args[0]);
+	if (s_pipex->args == NULL)
+		return ;
+	if (s_pipex->args[0] != NULL && s_pipex->args[0][0] != '/')
+		s_pipex->path_cmd = ft_strjoin(s_pipex->path[i], s_pipex->args[0]);
+	else
+		s_pipex->path_cmd = s_pipex->args[0];
 	if (s_pipex->path_cmd == NULL)
 		return (perror("ft_strjoin"));
 	while (s_pipex->path_cmd != NULL \

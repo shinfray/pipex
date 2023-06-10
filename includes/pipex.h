@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/07 10:13:54 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/10 08:44:11 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct s_pipex
 	int		fd_in;
 	int		fd_out;
 	int		fd[2];
-	int		pid1;
-	int		pid2;
+	pid_t	pid1;
+	pid_t	pid2;
 	int		exit_status;
 }				t_pipex;
 
