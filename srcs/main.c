@@ -37,8 +37,6 @@ int	main(int argc, char **argv, char **envp)
 
 static void	ft_exec_first_cmd(t_pipex *s_pipex)
 {
-	int	res[2];
-
 	s_pipex->pid_first = fork();
 	if (s_pipex->pid_first < 0)
 	{
@@ -47,11 +45,11 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 	}
 	if (s_pipex->pid_first != 0)
 		return ;
-	res[0] = dup2(s_pipex->fd_in, STDIN_FILENO);
-	res[1] = dup2(s_pipex->fd[1], STDOUT_FILENO);
+	s_pipex->res[0] = dup2(s_pipex->fd_in, STDIN_FILENO);
+	s_pipex->res[1] = dup2(s_pipex->fd[1], STDOUT_FILENO);
 	ft_close(4, s_pipex->fd_in, s_pipex->fd_out, \
 		s_pipex->fd[0], s_pipex->fd[1]);
-	if (res[0] == -1 || res[1] == -1)
+	if (s_pipex->res[0] == -1 || s_pipex->res[1] == -1)
 	{
 		s_pipex->exit_status = EXIT_FAILURE;
 		ft_quit(s_pipex);
@@ -66,8 +64,6 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 
 static void	ft_exec_last_cmd(t_pipex *s_pipex)
 {
-	int	res[2];
-
 	s_pipex->pid_last = fork();
 	if (s_pipex->pid_last < 0)
 	{
@@ -76,11 +72,11 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 	}
 	if (s_pipex->pid_last != 0)
 		return ;
-	res[0] = dup2(s_pipex->fd[0], STDIN_FILENO);
-	res[1] = dup2(s_pipex->fd_out, STDOUT_FILENO);
+	s_pipex->res[0] = dup2(s_pipex->fd[0], STDIN_FILENO);
+	s_pipex->res[1] = dup2(s_pipex->fd_out, STDOUT_FILENO);
 	ft_close(4, s_pipex->fd_in, s_pipex->fd_out, \
 		s_pipex->fd[0], s_pipex->fd[1]);
-	if (res[0] == -1 || res[1] == -1)
+	if (s_pipex->res[0] == -1 || s_pipex->res[1] == -1)
 	{
 		s_pipex->exit_status = EXIT_FAILURE;
 		ft_quit(s_pipex);
@@ -97,7 +93,7 @@ static void	ft_wait(t_pipex *s_pipex)
 {
 	int		wstatus;
 
-	waitpid(s_pipex->pid_first, &wstatus, 0);
+	waitpid(s_pipex->pid_first, NULL, 0);
 	waitpid(s_pipex->pid_last, &wstatus, 0);
 	if (WIFEXITED(wstatus))
 		s_pipex->exit_status = WEXITSTATUS(wstatus);

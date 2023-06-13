@@ -37,6 +37,7 @@ typedef struct s_pipex
 	int		fd_in;
 	int		fd_out;
 	int		fd[2];
+	int		res[2];
 	pid_t	pid_first;
 	pid_t	pid_last;
 	int		exit_status;
