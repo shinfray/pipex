@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:04:14 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 13:18:07 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:27:05 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ static void	ft_exec_first_cmd(t_pipex *s_pipex)
 	if (s_pipex->pid_first < 0)
 	{
 		s_pipex->exit_status = EXIT_FAILURE;
-		return (perror("fork error"));
+		perror("fork error");
+		return ;
 	}
 	if (s_pipex->pid_first != 0)
 		return ;
@@ -68,7 +69,8 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 	if (s_pipex->pid_last < 0)
 	{
 		s_pipex->exit_status = EXIT_FAILURE;
-		return (perror("fork error"));
+		perror("fork error");
+		return ;
 	}
 	if (s_pipex->pid_last != 0)
 		return ;

@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/10 13:21:35 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/15 13:24:14 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
 DEPS:=	${OBJS:.o=.d}
 
 LIBFT:=	libs/libft/libft.a
-CFLAGS:= -Wall -Wextra -Werror
+CFLAGS:= -Wall -Wextra -Werror -Wpedantic
 
 INC_DIRS:= includes libs/libft/includes
 
