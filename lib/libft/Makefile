@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 16:37:12 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/16 01:53:37 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/16 10:51:03 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME:=	libft.a
 
 BUILD_DIR:= build
-SRCS_DIR:= srcs
+SRCS_DIR:= src
 
 LIBFT_SRCS:=	ft_isalpha.c \
 				ft_isdigit.c \
@@ -78,7 +78,7 @@ DEPS:=	${OBJS:.o=.d}
 
 CFLAGS:= -Wall -Wextra -Werror -Wpedantic
 
-ROOT_INC_DIRS:= includes
+ROOT_INC_DIRS:= include
 INC_DIRS:= ${shell find ${ROOT_INC_DIRS} -type d}
 
 CPPFLAGS:= ${addprefix -I,${INC_DIRS}} -MMD -MP

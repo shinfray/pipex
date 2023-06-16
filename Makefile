@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/16 01:52:52 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/16 10:50:46 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME:=	pipex
 
 BUILD_DIR:= build
-SRCS_DIR:= srcs
+SRCS_DIR:= src
 
 SRCS_PIPEX:=	main.c \
 				parse.c \
@@ -28,14 +28,14 @@ OBJS:=	${SRCS:%.c=${BUILD_DIR}/%.o}
 
 DEPS:=	${OBJS:.o=.d}
 
-LIBFT:=	libs/libft/libft.a
+LIBFT:=	lib/libft/libft.a
 CFLAGS:= -Wall -Wextra -Werror -Wpedantic
 
-INC_DIRS:= includes libs/libft/includes
+INC_DIRS:= include lib/libft/include
 
 CPPFLAGS:= ${addprefix -I,${INC_DIRS}} -MMD -MP
 
-LIB_DIR:= libs/libft
+LIB_DIR:= lib/libft
 LDFLAGS:= ${addprefix -L,${LIB_DIR}}
 LDLIBS:= -lft
 
