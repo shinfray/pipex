@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:20:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 13:04:01 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:17:37 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_quit(t_pipex *s_pipex)
 {
 	if (s_pipex->path != NULL)
 		ft_free_double_ptr(s_pipex->path);
+	if (s_pipex->args != NULL)
+		ft_free_double_ptr(s_pipex->args);
 	exit(s_pipex->exit_status);
 }
 

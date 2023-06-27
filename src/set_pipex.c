@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:15:00 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/10 09:55:33 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:53:39 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,20 @@ static char	**ft_get_path(char **envp)
 
 static void	*ft_set_backslash(char **path)
 {
-	int	i;
+	char	*temp;
+	int		i;
 
 	i = 0;
 	while (path[i] != NULL)
 	{
+		temp = path[i];
 		path[i] = ft_strjoin(path[i], "/");
 		if (path[i++] == NULL)
 		{
 			perror("ft_strjoin");
 			path = ft_free_double_ptr(path);
 		}
+		free(temp);
 	}	
 	return (path);
 }
