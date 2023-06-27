@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:04:14 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/15 13:27:05 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:22:39 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ int	main(int argc, char **argv, char **envp)
 	if (pipe(s_pipex.fd) == -1)
 		perror("pipe creation");
 	ft_exec_first_cmd(&s_pipex);
+	ft_close(2, s_pipex.fd_in, s_pipex.fd[1]);
 	ft_exec_last_cmd(&s_pipex);
-	ft_close(4, s_pipex.fd_in, s_pipex.fd_out, s_pipex.fd[0], s_pipex.fd[1]);
+	ft_close(2, s_pipex.fd_out, s_pipex.fd[0]);
 	ft_wait(&s_pipex);
 	ft_quit(&s_pipex);
 }
