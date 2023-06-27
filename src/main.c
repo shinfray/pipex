@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:04:14 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/27 15:22:39 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:41:27 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,7 @@ static void	ft_exec_last_cmd(t_pipex *s_pipex)
 		return ;
 	s_pipex->res[0] = dup2(s_pipex->fd[0], STDIN_FILENO);
 	s_pipex->res[1] = dup2(s_pipex->fd_out, STDOUT_FILENO);
-	ft_close(4, s_pipex->fd_in, s_pipex->fd_out, \
-		s_pipex->fd[0], s_pipex->fd[1]);
+	ft_close(2, s_pipex->fd_out, s_pipex->fd[0]);
 	if (s_pipex->res[0] == -1 || s_pipex->res[1] == -1)
 	{
 		s_pipex->exit_status = EXIT_FAILURE;
