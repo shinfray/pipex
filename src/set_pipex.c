@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:15:00 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/27 14:53:39 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/28 20:57:41 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp)
 	s_pipex->outfile = argv[argc - 1];
 	s_pipex->args = NULL;
 	s_pipex->path_cmd = NULL;
-	s_pipex->fd[0] = -1;
-	s_pipex->fd[1] = -1;
+	s_pipex->fds = NULL;
+	s_pipex->total_pipe = 0;
+	s_pipex->pipe_index = -1;
 	s_pipex->fd_in = open(s_pipex->infile, O_RDONLY);
 	if (s_pipex->fd_in == -1)
 		perror("pipex");
