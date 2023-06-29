@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 11:34:06 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 15:28:11 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include <stdio.h>
-# include <stdlib.h>
 # include <sys/wait.h>
-# include <unistd.h>
 # include "libft.h"
+# include "get_next_line_bonus.h"
 
 # define COMMAND_NOT_FOUND 127
 
@@ -48,7 +47,11 @@ typedef struct s_pipex
 /*	SET_PIPEX FUNCTIONS	*/
 void	ft_set_pipex(t_pipex *pipex, int argc, char **argv, char **envp);
 
+/*	HERE_DOC FUNCTIONS	*/
+int		ft_here_doc(char **argv);
+
 /*	PARSE FUNCTIONS	*/
+int		ft_check_format(int argc, char **argv, t_pipex *pipex);
 void	ft_parse_args(t_pipex *pipex, char *args);
 
 /*	PIPES FUNCTIONS	*/

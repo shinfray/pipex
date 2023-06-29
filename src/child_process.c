@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:18:58 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 01:53:37 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 13:49:17 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_exec_childs(t_pipex *pipex)
 		return ;
 	}
 	ft_chooses_pipes(pipex);
-	ft_parse_args(pipex, pipex->argv[2 + pipex->pipe_index]);
+	ft_parse_args(pipex, pipex->argv[2 + pipex->pipe_index + pipex->here_doc]);
 	execve(pipex->path_cmd, pipex->args, pipex->envp);
 	ft_putstr_fd("pipex: command not found: ", STDERR_FILENO);
 	ft_putendl_fd(pipex->args[0], STDERR_FILENO);
