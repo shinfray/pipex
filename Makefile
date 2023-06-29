@@ -6,11 +6,12 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/29 02:16:23 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/29 02:17:58 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .DELETE_ON_ERROR:
+.SILENT:
 
 NAME:=	pipex
 B_NAME:=
