@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:21:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 01:59:25 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:05:42 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,12 @@ void	ft_create_pipes(t_pipex *pipex)
 		ft_quit(pipex);
 	}
 	i = 0;
-	while (i < pipex->total_pipes)
-	{
+	while (i < pipex->total_pipes * 2)
+		pipex->fds[i++] = -1;
+	i = -1;
+	while (++i < pipex->total_pipes)
 		if (pipe(pipex->fds + (i * 2)) == -1)
-		{
 			perror("Error pipe creation");
-			pipex->fds[i * 2] = -1;
-			pipex->fds[i * 2 + 1] = -1;
-		}
-		++i;
-	}
 }
 
 void	ft_close_pipes(t_pipex *pipex)
