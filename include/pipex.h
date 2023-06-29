@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 01:55:58 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:34:06 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_pipex
 	int		total_cmds;
 	int		pipe_index;
 	pid_t	pid_last;
+	int		here_doc;
 	int		exit_status;
 }				t_pipex;
 
