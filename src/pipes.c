@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:21:45 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 11:05:42 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 16:46:17 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_create_pipes(t_pipex *pipex)
 {
 	int	i;
 
-	pipex->fds = ft_calloc(pipex->total_pipes * 2, sizeof(*pipex->fds));
+	pipex->fds = ft_calloc((size_t)pipex->total_pipes * 2, sizeof(*pipex->fds));
 	if (pipex->fds == NULL)
 	{
 		perror("Error pipe creation");
