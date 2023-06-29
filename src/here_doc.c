@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:01:31 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 15:10:13 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 17:15:29 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	ft_here_doc_loop(char *line, int fd_hd, char *limiter)
 		line = get_next_line(STDIN_FILENO);
 		if (line == NULL)
 			return (-1);
-		if (ft_strncmp(line, limiter, ft_strlen(line)) == 10)
+		if (ft_strncmp(line, limiter, ft_strlen(line)) == ('\n' - '\0'))
 			break ;
 		ft_putstr_fd(line, fd_hd);
 		free(line);
