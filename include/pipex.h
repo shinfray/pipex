@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/28 21:08:40 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 01:55:58 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,29 @@ typedef struct s_pipex
 	int		fd_in;
 	int		fd_out;
 	int		*fds;
-	int		res[2];
-	int		total_pipe;
+	int		total_pipes;
+	int		total_cmds;
 	int		pipe_index;
-	pid_t	pid_first;
 	pid_t	pid_last;
 	int		exit_status;
 }				t_pipex;
 
 /*	SET_PIPEX FUNCTIONS	*/
-void	ft_set_pipex(t_pipex *s_pipex, int argc, char **argv, char **envp);
+void	ft_set_pipex(t_pipex *pipex, int argc, char **argv, char **envp);
 
 /*	PARSE FUNCTIONS	*/
-void	ft_parse_args(t_pipex *s_pipex, char *args);
-void	ft_check_path_cmd(t_pipex *s_pipex);
+void	ft_parse_args(t_pipex *pipex, char *args);
+
+/*	PIPES FUNCTIONS	*/
+void	ft_create_pipes(t_pipex *pipex);
+void	ft_close_pipes(t_pipex *pipex);
+
+/*	CHILD_PROCESS FUNCTIONS	*/
+void	ft_exec_childs(t_pipex *pipex);
+void	ft_wait(t_pipex *pipex);
 
 /*	UTILS FUNCTIONS	*/
-void	ft_quit(t_pipex *s_pipex);
+void	ft_quit(t_pipex *pipex);
 void	*ft_free_double_ptr(char **tab);
 void	ft_close(int count, ...);
 

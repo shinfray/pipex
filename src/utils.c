@@ -6,23 +6,25 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:20:37 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/27 15:17:37 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/29 01:47:29 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_quit(t_pipex *s_pipex);
+void	ft_quit(t_pipex *pipex);
 void	*ft_free_double_ptr(char **tab);
 void	ft_close(int count, ...);
 
-void	ft_quit(t_pipex *s_pipex)
+void	ft_quit(t_pipex *pipex)
 {
-	if (s_pipex->path != NULL)
-		ft_free_double_ptr(s_pipex->path);
-	if (s_pipex->args != NULL)
-		ft_free_double_ptr(s_pipex->args);
-	exit(s_pipex->exit_status);
+	if (pipex->path != NULL)
+		ft_free_double_ptr(pipex->path);
+	if (pipex->args != NULL)
+		ft_free_double_ptr(pipex->args);
+	if (pipex->fds != NULL)
+		free(pipex->fds);
+	exit(pipex->exit_status);
 }
 
 void	*ft_free_double_ptr(char **ptr)
