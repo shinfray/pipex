@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:15:00 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 15:13:10 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:03:43 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	ft_set_pipex(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->path = ft_get_path(envp);
 	pipex->args = NULL;
 	pipex->path_cmd = NULL;
-	pipex->fds = NULL;
-	pipex->pipe_index = -1;
-	pipex->total_pipes = pipex->argc - (4 + pipex->here_doc);
-	pipex->total_cmds = pipex->total_pipes + 1;
+	pipex->cmd_index = -1;
+	pipex->total_cmds = pipex->argc - (3 + pipex->here_doc);
 	pipex->pid_last = -1;
 	ft_get_files(argc, argv, pipex);
+	pipex->pipe[0] = pipex->fd_in;
+	pipex->pipe[1] = -1;
 }
 
 static char	**ft_get_path(char **envp)
@@ -85,14 +85,6 @@ static void	ft_get_files(int argc, char **argv, t_pipex *pipex)
 {
 	pipex->outfile = argv[argc - 1];
 	if (pipex->here_doc == 0)
-		pipex->fd_out = open(pipex->outfile, \
-			O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	else
-		pipex->fd_out = open(pipex->outfile, \
-			O_CREAT | O_WRONLY | O_APPEND, 0644);
-	if (pipex->fd_out == -1)
-		perror("pipex");
-	if (pipex->here_doc == 0)
 	{
 		pipex->infile = argv[1];
 		pipex->fd_in = open(pipex->infile, O_RDONLY);
@@ -100,5 +92,13 @@ static void	ft_get_files(int argc, char **argv, t_pipex *pipex)
 	else
 		pipex->fd_in = ft_here_doc(argv);
 	if (pipex->fd_in == -1)
+		perror("pipex");
+	if (pipex->here_doc == 0)
+		pipex->fd_out = open(pipex->outfile, \
+			O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	else
+		pipex->fd_out = open(pipex->outfile, \
+			O_CREAT | O_WRONLY | O_APPEND, 0644);
+	if (pipex->fd_out == -1)
 		perror("pipex");
 }
