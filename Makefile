@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/29 15:01:26 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/30 13:49:14 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRCS_FILES:=	main \
 				here_doc \
 				set_pipex \
 				parse \
-				pipes \
 				child_process \
 				utils
 

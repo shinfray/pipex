@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/30 13:08:45 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/30 13:48:49 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <errno.h>
 # include <fcntl.h>
-# include <stdarg.h>
 # include <stdio.h>
 # include <sys/wait.h>
 # include "libft.h"
@@ -53,17 +52,12 @@ int		ft_here_doc(char **argv);
 int		ft_check_format(int argc, char **argv, t_pipex *pipex);
 void	ft_parse_args(t_pipex *pipex, char *args);
 
-/*	PIPES FUNCTIONS	*/
-// void	ft_create_pipes(t_pipex *pipex);
-// void	ft_close_pipes(t_pipex *pipex);
-
 /*	CHILD_PROCESS FUNCTIONS	*/
-void	ft_exec_childs(t_pipex *pipex);
+void	ft_exec(t_pipex *pipex);
 void	ft_wait(t_pipex *pipex);
 
 /*	UTILS FUNCTIONS	*/
 void	ft_quit(t_pipex *pipex);
 void	*ft_free_double_ptr(char **tab);
-void	ft_close(int count, ...);
 
 #endif
