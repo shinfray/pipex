@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:14:58 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/29 15:22:34 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:04:37 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	ft_check_format(int argc, char **argv, t_pipex *pipex)
 	const char	*err1 = "Usage: ./pipex file cmd ... cmd file";
 	const char	*err2 = "Usage: ./pipex here_doc LIMITER file cmd ... cmd file";
 
-	if (argc > 1 && ft_strncmp(argv[1], "here_doc", 9) == 0)
-		pipex->here_doc = 1;
-	else
-		pipex->here_doc = 0;
+	pipex->here_doc = (argc > 1 && ft_strncmp(argv[1], "here_doc", 9) == 0);
 	if (pipex->here_doc == 0 && argc < 5)
 	{
 		ft_putendl_fd((char *)err1, STDERR_FILENO);
