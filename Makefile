@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/30 13:49:14 by shinfray         ###   ########.fr        #
+#    Updated: 2023/06/30 13:50:55 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ CFLAGS:= -Wall -Wextra -Werror -Wpedantic
 EXT:=	.c
 
 SRCS_FILES:=	main \
+				exec \
 				here_doc \
-				set_pipex \
 				parse \
-				child_process \
+				set_pipex \
 				utils
 
 B_SRCS_FILES:=
