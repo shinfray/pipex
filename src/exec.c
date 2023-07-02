@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 01:18:58 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/30 13:50:34 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/07/03 01:05:32 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ void	ft_exec(t_pipex *pipex)
 		ft_child_process(pipex, fd_to_read, fd_to_write);
 	close(fd_to_read);
 	close(fd_to_write);
-	if (pid < 0)
-	{
-		pipex->exit_status = EXIT_FAILURE;
+	if (pid == -1)
 		perror("fork error");
-	}
 	if (pipex->cmd_index == pipex->total_cmds - 1)
 		pipex->pid_last = pid;
 }
@@ -47,7 +44,7 @@ void	ft_wait(t_pipex *pipex)
 {
 	int		wstatus;
 
-	if (pipex->pid_last > 0)
+	if (pipex->pid_last != -1)
 	{
 		waitpid(pipex->pid_last, &wstatus, 0);
 		if (WIFEXITED(wstatus))
