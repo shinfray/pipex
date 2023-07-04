@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:01:31 by shinfray          #+#    #+#             */
-/*   Updated: 2023/07/03 00:57:15 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/07/04 08:26:15 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int	ft_here_doc(char **argv)
 static void	ft_fill_in_here_doc_file(int fd_hd, char *limiter)
 {
 	char	*line;
+	size_t	lim_len;
 
 	while (1)
 	{
 		line = NULL;
 		ft_putstr_fd("heredoc> ", STDOUT_FILENO);
 		line = ft_here_doc_get_next_line(line);
-		if (ft_strncmp(line, limiter, ft_strlen(line)) == ('\n' - '\0'))
+		lim_len = ft_strlen(limiter);
+		if (ft_strncmp(line, limiter, lim_len) == 0 && line[lim_len] == '\n')
 			break ;
 		ft_putstr_fd(line, fd_hd);
 		free(line);
