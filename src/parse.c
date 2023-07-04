@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 19:14:58 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/30 14:04:37 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:43:45 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_check_format(int argc, char **argv, t_pipex *pipex)
 	pipex->here_doc = (argc > 1 && ft_strncmp(argv[1], "here_doc", 9) == 0);
 	if (pipex->here_doc == 0 && argc < 5)
 	{
-		ft_putendl_fd((char *)err1, STDERR_FILENO);
+		ft_putendl_fd(err1, STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	else if (pipex->here_doc == 1 && argc < 6)
 	{
-		ft_putendl_fd((char *)err2, STDERR_FILENO);
+		ft_putendl_fd(err2, STDERR_FILENO);
 		return (EXIT_FAILURE);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/02 15:58:52 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/30 13:48:49 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/07/04 23:31:05 by shinfray         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 
 typedef struct s_pipex
 {
-	int		argc;
 	char	**argv;
 	char	**envp;
 	char	**path;
@@ -32,14 +31,15 @@ typedef struct s_pipex
 	char	*outfile;
 	char	**args;
 	char	*path_cmd;
+	int		argc;
 	int		fd_in;
 	int		fd_out;
 	int		pipe[2];
 	int		total_cmds;
 	int		cmd_index;
-	pid_t	pid_last;
 	int		here_doc;
 	int		exit_status;
+	pid_t	pid_last;
 }				t_pipex;
 
 /*	SET_PIPEX FUNCTIONS	*/

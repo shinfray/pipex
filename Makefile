@@ -6,7 +6,7 @@
 #    By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/11 17:10:39 by shinfray          #+#    #+#              #
-#    Updated: 2023/06/30 13:50:55 by shinfray         ###   ########.fr        #
+#    Updated: 2023/07/04 23:46:00 by shinfray         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,31 @@ LDLIBS:= -lft
 LIBFT:=	lib/libft/libft.a
 LIB_DIRS:= lib/libft
 
-CFLAGS:= -Wall -Wextra -Werror -Wpedantic
+CFLAGS:= -Wall -Wextra -Werror -Wpedantic \
+			-Wpedantic -pedantic-errors \
+			-std=c17 \
+			-O3 \
+			-Wcast-qual \
+			-Wconversion \
+			-Wdouble-promotion \
+			-Wfloat-equal \
+			-Wformat=2 \
+			-Winit-self \
+			-Wmissing-declarations \
+			-Wmissing-declarations \
+			-Wstrict-prototypes \
+			-Wmissing-prototypes \
+			-Wpadded \
+			-Wshadow \
+			-Wundef \
+			-Wunused-macros \
+			-Wwrite-strings
+
+#			-Walloc-zero \
+			-Wduplicated-branches \
+			-Wduplicated-cond \
+			-Wformat-signedness \
+			-Wlogical-op \
 
 EXT:=	.c
 
