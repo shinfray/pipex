@@ -19,7 +19,7 @@ static void	ft_check_path_cmd(t_pipex *pipex);
 int	ft_check_format(int argc, char **argv, t_pipex *pipex)
 {
 	const char	*err1 = "Usage: ./pipex file cmd ... cmd file";
-	const char	*err2 = "Usage: ./pipex here_doc LIMITER file cmd ... cmd file";
+	const char	*err2 = "Usage: ./pipex here_doc LIMITER cmd ... cmd file";
 
 	pipex->here_doc = (argc > 1 && ft_strncmp(argv[1], "here_doc", 9) == 0);
 	if (pipex->here_doc == 0 && argc < 5)
