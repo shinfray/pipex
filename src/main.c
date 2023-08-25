@@ -6,13 +6,11 @@
 /*   By: shinfray <shinfray@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 13:04:14 by shinfray          #+#    #+#             */
-/*   Updated: 2023/06/30 13:42:21 by shinfray         ###   ########.fr       */
+/*   Updated: 2023/08/25 11:13:58 by simonhinfray     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-int	ft_check_format(int argc, char **argv, t_pipex *pipex);
 
 int	main(int argc, char **argv, char **envp)
 {
